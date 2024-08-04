@@ -1,3 +1,18 @@
+> [>note]
+> ```bash
+> $ tree /etc/nixos
+> 
+> /etc/nixos/
+>  ├── configuration.nix
+>  └── hardware-configuration.nix
+> ```
+> - All the declarative configuration for the system.
+>    ( timezone , keyboard layout , language
+>    network , users , file system , boot option)
+> - This page shows the example, setup open-ssh for user.
+> 
+>  #open-ssh
+
 # Get Started with NixOS
 
 Now that we have learned the basics of the Nix language, we can start using it to
@@ -14,6 +29,11 @@ as the default one, and preserves the previous environment in the boot options o
 grub/systemd-boot. This ensures that we can always roll back to the old environment even
 if the new one fails to start.
 
+> [!note]
+> 1. edit /etc/nixos/configuration.nix
+> 1. run `sudo nixos-rebuild switch`
+> 1. If your system crashed, then roolback
+
 While `/etc/nixos/configuration.nix` is the classic method for configuring NixOS, it
 relies on data sources configured by `nix-channel` and lacks a version-locking mechanism,
 making it challenging to ensure the reproducibility of the system. A better approach is to
@@ -21,6 +41,11 @@ use Flakes, which provides reproducibility and facilitates configuration managem
 
 In this section, we will first learn how to manage NixOS using the classic method
 (`/etc/nixos/configuration.nix`), and then we will explore the more advanced Flakes.
+
+> [!note]
+> editing `/etc/nixos/configuration.nix` is crasic style.
+> this methood relies on `nix-channel`, which does not has version lock function.
+> We will learn flake, which has version lock function, later.
 
 ## Configuring the System using `/etc/nixos/configuration.nix`
 

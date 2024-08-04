@@ -16,10 +16,25 @@
     isNormalUser = true;
     description = "ryan";
     extraGroups = [ "networkmanager" "wheel" ];
+    openssh.authorizedKeys.keys = [
+        # Replace with your own public key
+        "ssh-ed25519 <some-public-key> ryan@ryan-pc"
+    ];
     packages = with pkgs; [
       firefox
     #  thunderbird
     ];
+  };
+
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    settings = {
+      X11Forwarding = true;
+      PermitRootLogin = "no"; # disable root login
+      PasswordAuthentication = false; # disable password login
+    };
+    openFirewall = true;
   };
 
   # Omit the rest of the configuration...
