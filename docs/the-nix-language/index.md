@@ -1,3 +1,9 @@
+> [!note]
+> [**A tour of Nix**](https://nixcloud.io/tour/?id=introduction/nix):
+> This site gives me a great first step.
+> It was like Progate.
+> I should do it again to remember the syntax.
+
 # Basics of the Nix Language
 
 The Nix language is essential for declaring configurations to be built by Nix. To fully
@@ -27,9 +33,3 @@ introduction to the Nix language:
 
 It's okay to have a rough impression of the syntax for now. You can come back to review
 the syntax when you find something you don't understand later.
-
-> [!note]
-> [**A tour of Nix**](https://nixcloud.io/tour/?id=introduction/nix):
-> This site gives me a great first step.
-> It was like Progate.
-> I should do it again to remember the syntax.
