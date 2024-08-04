@@ -6,6 +6,10 @@ Nix is a declarative package manager that enables users to declare the desired s
 state in configuration files (declarative configuration), and it takes responsibility for
 achieving that state.
 
+> [!note]
+> Nix is a declarative
+> Users can declare their config
+
 > In simple terms, "declarative configuration" means that users only need to declare the
 > desired outcome. For instance, if you declare that you want to replace the i3 window
 > manager with sway, Nix will assist you in achieving that goal. You don't have to worry
@@ -35,12 +39,22 @@ an important user directory, contains many necessary configuration files -
 called [home-manager](https://github.com/nix-community/home-manager) is designed to manage
 user-level packages and configuration files within the user's home directory.
 
+> [!note]
+> nixos is for the system. (This config can effect every single user)
+> home-manager is alternative dotfiles (This config is for individual user)
+
 Due to Nix's features, such as being declarative and reproducible, Nix is not limited to
 managing desktop environments but is also extensively used for managing development
 environments, compilation environments, cloud virtual machines, and container image
 construction. [NixOps](https://github.com/NixOS/nixops) (an official Nix project) and
 [colmena](https://github.com/zhaofengli/colmena) (a community project) are both
 operational tools based on Nix.
+
+> [!note]
+> Nix is good not only for desktop environments.
+> - development environmets
+> - cloud virtual machines
+> - container
 
 ## Why NixOS?
 
