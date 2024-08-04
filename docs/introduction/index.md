@@ -72,10 +72,23 @@ in EndeavourOS prevented me from restoring the system when problems arose.
 
 That's when I decided to switch to NixOS.
 
+> [!note]
+> NixOS, system configuration can rollback, cool, but learning a new language and write is tough.
+> This author was not motivated to use NixOS.
+> 
+> He hit lots of issues with EndeavourOS.
+> EndeavoourOS does not have version control and rollback -> hard to restore
+> So, NixOS
+
 To my delight, NixOS has exceeded my expectations. The most astonishing aspect is that I
 can now restore my entire i3 environment and all my commonly used packages on a fresh
 NixOS host with just one command `sudo nixos-rebuild switch --flake .`. It's truly
 fantastic!
+
+> [!note]
+> `sudo nixos-rebuild switch --flake .`
+> Wow, its fantastic.
+> I can restore my entire i3 environment.
 
 The rollback capability and reproducibility of NixOS has instilled a great deal of
 confidence in me—I no longer fear breaking the system. I've even ventured into
@@ -99,6 +112,10 @@ configuration of many hosts:
 The development environment of three desktop computers is managed by Home Manager, the
 main configuration is completely shared, and the configuration modified on any host can be
 seamlessly synchronized to other hosts through Git.
+
+> [!note]
+> He manages 7 environments with one nix-config.
+> Main configuration is shared
 
 Nix almost completely shielded me from the differences between OS and architecture at the
 bottom of the three machines, and the experience was very smooth!
