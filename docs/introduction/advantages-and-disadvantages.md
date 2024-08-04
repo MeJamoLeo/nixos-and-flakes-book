@@ -1,3 +1,20 @@
+> [!note]
+> - Advantages
+> 	- OS as Code
+>	 	- git, user can see history.
+>	 	- flake.lock, reproducibility and build result.
+> 	- convenient system customization
+> 		- components can replaced.
+> 	- Rollback
+> 		- if crash, then go previous system state.
+> 	- No Dependency Conflict Issues
+> - Disadvantage
+> 	- Difficult
+> 	- Disorganized Documentation
+> 	- Disk Space Usage (Personaly, i dont mind)
+> 	- Error Messages are poor
+>	- More complex underlying implementation (I'm a user so I dont mind now)
+
 # Advantages & Disadvantages of NixOS
 
 ## Advantages of NixOS
