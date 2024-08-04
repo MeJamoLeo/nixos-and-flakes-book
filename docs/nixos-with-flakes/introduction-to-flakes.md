@@ -1,3 +1,23 @@
+> [!note]
+> flakes is the gamechanger in the nix project.
+> Flakes introduce `flake.nix`.
+> once build success, generate `flake.lock`, which locks the versions of dependencies.
+> This relation looked like `package.json` and `package-lock.json` in javascript project.
+>
+
+> [!note]
+> Using Flakes requires the use of the new CLI.
+> <br>
+> | Old CLI | New CLI | describe |
+> | --- | --- | --- |
+> | `nix-channel` | **inputs** section in _flake.nix_ | manages software package versions
+> | `nix-env` | `nix profile` | manages software packages in the user environment. <br><br> `nix-env` does not record config in nix's declarative configuration when packages are installed with this command. <br> _nix profile is **not for beginner**._
+> | `nix-shell` | `nix develop` <br> `nix shell` <br> `nix run` | create a temporaly shell environment
+> | `nix-build` | `nix build` | `nix-build` does not record config automatically in nix's declarative configuration.
+> |  `nix-collect-garbage` | `nix store gc --debug` | Garbage collection command used to clean up unused Store Objects. <br> `nix store gc --debug` does not clean the profile generations, so not alternative.
+
+
+
 # Introduction to Flakes
 
 The flakes experimental feature is a major development for Nix, it introduces a policy for
@@ -99,8 +119,8 @@ is currently no alternative for this command):
       `nix-env` are not automatically recorded in Nix's declarative configuration and are
       completely independent of its control, making them challenging to reproduce on other
       machines. Therefore, it is not recommended to use this command directly.
-   2. The corresponding command in the New CLI is `nix profile`. Personally, I don't
-      recommend it for beginners.
+   2. The corresponding command in the New CLI is `nix profile`. **Personally, I don't
+      recommend it for beginners.**
 3. `nix-shell`: `nix-shell` creates a temporary shell environment, which is useful for
    development and testing.
    1. New CLI: This tool is divided into three sub-commands: `nix develop`, `nix shell`,
