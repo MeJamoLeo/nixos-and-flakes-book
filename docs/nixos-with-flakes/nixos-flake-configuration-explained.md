@@ -34,6 +34,9 @@ branch name, commit-id, or tag.
 After `nixpkgs` is defined in `inputs`, you can use it in the parameters of the subsequent
 `outputs` function, which is exactly what our example does.
 
+> [!note]
+> Define dependancies in `inputs`
+
 ## 2. Flake Outputs
 
 Now let's look at `outputs`. It is a function that takes the dependencies from `inputs` as
@@ -94,6 +97,15 @@ example:
 sudo nixos-rebuild switch --flake github:owner/repo#your-hostname
 ```
 
+> [!note]
+> ```bash
+> sudo nixos-rebuild switch --flake /path/to/your/flake#your-hostname
+> ```
+> - path
+>   - default is `/etc/nixos`
+> - hostname
+>   - default is my current system
+
 ## 3. The Special Parameter `self` of the `outputs` Function {#special-parameter-self-of-outputs-function}
 
 Although we have not mentioned it before, all the example code in the previous sections
@@ -114,6 +126,15 @@ configurations you may find online) later, you will see the usage of `self`.
 > outputs of the current flake, which is indeed possible. However, the Nix Manual does not
 > provide any explanation for this, and it is considered an internal implementation detail
 > of flakes. It is not recommended to use this in your own code!
+
+> [!note]
+> - `self` as an argument for output is **sprecial !**
+> but I have not understanded, and this author said it is not recommended.
+> therefore, I will leave it later. 
+> Oneday, I hope I can understand this friends.
+> <br>
+> **I don't need `self` in this point.**
+> **The code can work**
 
 ## 4. Simple Introduction to `nixpkgs.lib.nixosSystem` Function {#simple-introduction-to-nixpkgs-lib-nixos-system}
 
@@ -170,6 +191,61 @@ system. Readers who have completed the
 [Modularizing NixOS Configuration](./modularize-the-configuration.md) section can return
 to [nixpkgs/flake.nix] to find the definition of `nixpkgs.lib.nixosSystem`, trace its
 source code, and study its implementation.
+
+> [!note]
+> `@inputs` can ommit artuments.
+> The three code brocks can work in this minimal flake.nix
+> ```nix{8-13}
+> # 1. with `@inputs` but do nothing (sample code we see this page)
+> {
+>   inputs = {
+>     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+>   };
+> 
+>   outputs = {nixpkgs, ... }@inputs: {
+>     nixosConfigurations.my-nixos = nixpkgs.lib.nixosSystem {
+>       system = "x86_64-linux";
+>       modules = [
+>         ./configuration.nix
+>       ];
+>     };
+>   };
+> }
+> ```
+> ```nix{8-13}
+> # 2. I don't have to use `@inputs` in this case
+> {
+>   inputs = {
+>     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+>   };
+> 
+>   outputs = {nixpkgs, ... }: {
+>     nixosConfigurations.my-nixos = nixpkgs.lib.nixosSystem {
+>       system = "x86_64-linux";
+>       modules = [
+>         ./configuration.nix
+>       ];
+>     };
+>   };
+> }
+> ```
+> ```nix{8-13}
+> # 3. with `@inputs` and use in output function
+> {
+>   inputs = {
+>     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+>   };
+> 
+>   outputs = { ... }@inputs: {
+>     nixosConfigurations.my-nixos = inputs.nixpkgs.lib.nixosSystem {
+>       system = "x86_64-linux";
+>       modules = [
+>         ./configuration.nix
+>       ];
+>     };
+>   };
+> }
+> ```
 
 [nix flake - Nix Manual]:
   https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake#flake-inputs
