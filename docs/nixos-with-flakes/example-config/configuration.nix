@@ -37,5 +37,15 @@
     openFirewall = true;
   };
 
+  nix-settings.experimental-features = ["nix-command" "flakes" ];
+  environment.systemPackages = with pkgs; [
+    git # Flakes clones its dependencies through the git command
+    vim
+    wget
+    curl
+  ];
+
+  environment.variables.EDITOR = "vim"; # Set the default editor to vim
+
   # Omit the rest of the configuration...
 }
