@@ -1,3 +1,7 @@
+> [!note]
+> specialArgs is a kind of arguments like grobal variables.
+
+
 # The combination ability of Flakes and Nixpkgs module system
 
 ## Nixpkgs Module Structure Explained {#simple-introduction-to-nixpkgs-module-structure}
@@ -166,6 +170,10 @@ system software from other flake sources.
 
 ## Installing System Software from Other Flake Sources {#install-system-packages-from-other-flakes}
 
+> ![note]
+> install software from other flake soources.
+> **not from the official nixpkgs**, so I can install everything from everywhere hehe.
+
 The most common requirement for managing a system is to install software, and we have
 already seen in the previous section how to install packages from the official nixpkgs
 repository using `environment.systemPackages`. These packages all come from the official
@@ -222,6 +230,12 @@ Next, you can reference this flake input data source in `configuration.nix`:
   # ...
 }
 ```
+
+> ![note]
+> inputs.helix.packages.**ARCHTECTURE**.helix
+> ```nix
+> inputs.helix.packages."${pkgs.system}".helix
+> ```
 
 Make the necessary changes and deploy with `sudo nixos-rebuild switch`. The deployment
 will take much longer this time because Nix will compile the entire Helix program from

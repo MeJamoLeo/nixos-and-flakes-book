@@ -179,6 +179,9 @@ in the current folder for reference:
 nix flake new example -t github:nix-community/home-manager#nixos
 ```
 
+> [!note]
+> This is convinient command. I should learn `nix flake new example -t ...` commnad.
+
 After adjusting the parameters, the content of `/etc/nixos/flake.nix` is as follows:
 
 ```nix
@@ -224,6 +227,16 @@ After adjusting the parameters, the content of `/etc/nixos/flake.nix` is as foll
   };
 }
 ```
+> [!note]
+> `As arguments for output function, are there any difference between
+> ```
+> outputs = inputs@{ nixpkgs, home-manager, ... }: {
+> outputs = { nixpkgs, home-manager, ... }@inputs: {
+> ```
+> I saw these two patterns a lot.
+>
+> **Answer**
+> - Functionality ... same
 
 Then run `sudo nixos-rebuild switch` to apply the configuration, and home-manager will be
 installed automatically.
