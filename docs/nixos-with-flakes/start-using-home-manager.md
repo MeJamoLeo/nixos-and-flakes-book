@@ -250,6 +250,9 @@ After the installation, all user-level packages and configuration can be managed
 home-manager will be applied automatically. (**It's not necessary to run
 `home-manager switch` manually**!)
 
+> [!note]
+> When run `sudo nixos-rebuild switch`, home-manager automatically applied.
+
 To find the options we can use in `home.nix`, referring to the following documents:
 
 - [Home Manager - Appendix A. Configuration Options](https://nix-community.github.io/home-manager/options.xhtml):
@@ -297,7 +300,22 @@ The benefits of this approach are:
    can better isolate different user environments, preventing configuration and software
    version conflicts between users.
 
+> [!note]
+> manage with home-manager or nixos system??
+> nixos -> global
+> - every user can access
+> home-manager -> user's directory
+> - only abailable
+> <br>
+> softwares that you want to use as root, you should install NixOS Modules.
+> <br>
+> configuration.nix -> only for NixOS
+> home-manager -> NixOS, macOS, and other linux distro -> **portable**
+
 ## How to use packages installed by Home Manager with privileged access?
+
+> [!note]
+> I probably need in the future.
 
 The first thing that comes to mind is to switch to `root`, but then any packages installed
 by the current user through `home.nix` will be unavailable. let's take `kubectl` as an
