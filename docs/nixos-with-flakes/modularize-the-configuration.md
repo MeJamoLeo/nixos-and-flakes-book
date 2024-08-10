@@ -157,6 +157,37 @@ module.
 
 ## `lib.mkOverride`, `lib.mkDefault`, and `lib.mkForce`
 
+> [!note]
+> ```bash
+> ❯ nix repl -f '<nixpkgs>'
+> Welcome to Nix 2.18.5. Type :? for help.
+>
+> Loading installable ''...
+> Added 22313 variables.
+>
+> nix-repl>
+> nix-repl> :e lib.mkDefault
+> ```
+>
+> ```nix
+> # ......
+>
+> mkOverride = priority: content:
+>   { _type = "override";
+>     inherit priority content;
+>   };
+>
+> mkOptionDefault = mkOverride 1500; # priority of option defaults
+> mkDefault = mkOverride 1000; # used in config sections of non-user modules to set a default
+> mkImageMediaOverride = mkOverride 60; # image media profiles can be derived by inclusion into host config, hence needing to override host config, but do allow user to mkForce
+> mkForce = mkOverride 50;
+> mkVMOverride = mkOverride 10; # used by ‘nixos-rebuild build-vm’
+>
+> # ......
+> ```
+> lib.mkDefault < lib.mkForce
+>                [much power]
+
 In Nix, some people use `lib.mkDefault` and `lib.mkForce` to define values. These
 functions are designed to set default values or force values of options.
 
@@ -231,6 +262,8 @@ like this:
   # ......
 }
 ```
+> [!note]
+> I don't know what is **low-level module** and **high-level module**
 
 ## `lib.mkOrder`, `lib.mkBefore`, and `lib.mkAfter`
 
@@ -358,6 +391,13 @@ order of definition.
 
 > For a deeper introduction to the module system, see
 > [Module System & Custom Options](../other-usage-of-flakes/module-system.md).
+
+> [!note]
+> I will make module step by step.
+> - 1. create basic nixos, home-manager
+> - 1. use same home manager, and controll configuration.nix and hardware.nix with different host name in flake.nix
+> - 1. add nix-darwin as new host
+> - 1. Finally, I think I have to use mkDefault and mkForce and so on.
 
 ## References
 
